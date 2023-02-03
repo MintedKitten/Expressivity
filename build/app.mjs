@@ -12,4 +12,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-export default app;
+var app_default = app;
+export {
+  app_default as default
+};
