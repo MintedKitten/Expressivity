@@ -12,7 +12,11 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(path.dirname(import.meta.url), "public")));
+try {
+  app.use(express.static(path.join(path.dirname(import.meta.url), "public"))); //esm
+} catch (e) {
+  app.use(express.static(path.join(__dirname, "public"))); //cjs
+}
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

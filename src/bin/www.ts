@@ -6,8 +6,9 @@
 
 import app from "../app";
 import http from "http";
-import db from "debug";
-const debug = db("expressivity:server");
+const debug = (await import("debug")).default("expressivity:server");
+// import db from "debug";
+// const debug = db("expressivity:server");
 
 /**
  * Get port from environment and store in Express.
