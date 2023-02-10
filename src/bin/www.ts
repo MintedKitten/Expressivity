@@ -6,10 +6,8 @@
 
 import app from "../app";
 import http from "http";
-const debug = await import("debug").then((debug) => {
-  //@ts-expect-error
-  return debug("expressivity:server");
-});
+import db from "debug";
+const debug = db("expressivity:server");
 
 /**
  * Get port from environment and store in Express.
