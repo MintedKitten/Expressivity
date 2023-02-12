@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node build/bin/www.mjs",
-    "build": "build-esbuild -s src -o build -f esm",
+    "build": "build-esbuild -s src -o build -f esm -m",
     "dev": "nodemon build/bin/www.mjs"
   },
   "dependencies": {
