@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node build/bin/www.mjs",
+    "start": "npm run start:build && npm run start:node",
     "build": "build-esbuild -s src -o build -f esm -m",
-    "dev": "nodemon build/bin/www.mjs"
+    "start:node": "node build/bin/www.mjs",
+    "dev": "npm run start:build && npm run dev:nodemon",
+    "dev:nodemon": "nodemon build/bin/www.mjs"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
