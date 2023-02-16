@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run start:build && npm run start:node",
-    "build": "build-esbuild -s src -o build -f esm -m",
+    "build": "npx build-esbuild -s src -o build -f esm -m",
     "start:node": "node build/bin/www.mjs",
     "dev": "npm run start:build && npm run dev:nodemon",
     "dev:nodemon": "nodemon build/bin/www.mjs"
@@ -32,7 +32,6 @@
     "@types/node": "^18.11.18",
     "@types/passport": "^1.0.11",
     "@types/passport-jwt": "^3.0.8",
-    "build-esbuild": "^0.1.1",
     "nodemon": "^2.0.20"
   }
 }
