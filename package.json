@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "install": "ls -l",
     "start": "node build/bin/www.js",
     "build": "npx build-esbuild -s src -o build",
     "dev:nodemon": "nodemon build/bin/www.js"
