@@ -6,6 +6,7 @@ interface IUser {
   email: string;
   password: string;
   role: string;
+  address: string;
 }
 
 const userSchema = new Schema(
@@ -20,6 +21,7 @@ const userSchema = new Schema(
     },
     password: { type: String, required: true, trim: true, minlength: 5 },
     role: { type: String, required: true, trim: true, default: "member" },
+    address: { type: String, required: true, trim: true },
   },
   {
     methods: {
@@ -29,7 +31,7 @@ const userSchema = new Schema(
         return hashPassword;
       },
       async checkPassword(password: string) {
-        const isValid = bcrypt.compare(password, this.password);
+        const isValid = await bcrypt.compare(password, this.password);
         return isValid;
       },
     },

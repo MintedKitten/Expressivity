@@ -6,13 +6,14 @@ import { DBURI } from "./config";
 import mongoose from "mongoose";
 import { errorHandler } from "./middlewares/errorHandler";
 
+import indexRouter from "./routes/index";
+import usersRouter from "./routes/user";
+import locationRouter from "./routes/location";
+import categoryRouter from "./routes/category";
+import productRouter from "./routes/product";
+
 mongoose.pluralize(null);
 mongoose.connect(`${DBURI}`);
-import indexRouter from "./routes/index";
-import usersRouter from "./routes/users";
-import companiesRouter from "./routes/company";
-import staffRouter from "./routes/staff";
-import shopRouter from "./routes/shops";
 
 const app = express();
 
@@ -23,12 +24,10 @@ app.use(cookieParser());
 app.use(express.static(getDirPath({ foldername: "public" })));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/", indexRouter);
 app.use("/user", usersRouter);
-app.use("/company", companiesRouter);
-app.use("/staff", staffRouter);
-app.use("/shop", shopRouter);
+app.use("/location", locationRouter);
+app.use("/category", categoryRouter);
+app.use("/product", productRouter);
 
 app.use(errorHandler);
 

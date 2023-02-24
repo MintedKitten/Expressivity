@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import { DOMAIN } from "../config";
-import { staff } from "../models/staff";
+import { staff } from "../models/_staff";
 import { CustomError } from "../middlewares/errorHandler";
 import { saveImageToDisk } from "../bin/saveImageToDisk";
 

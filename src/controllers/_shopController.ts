@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { shop } from "../models/shop";
+import { shop } from "../models/_shop";
 import { menu } from "../models/menu";
 import { DOMAIN } from "../config";
 import { validationResult } from "express-validator";

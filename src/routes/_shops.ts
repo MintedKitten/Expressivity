@@ -6,7 +6,7 @@ import {
   getMenu,
   getShop,
   addShop,
-} from "../controllers/shopController";
+} from "../controllers/_shopController";
 
 router.get("/", index);
 router.get("/menu", getMenu);

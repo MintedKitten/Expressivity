@@ -1,19 +1,12 @@
 import { Router } from "express";
 const router = Router();
-import {
-  index,
-  bio,
-  register,
-  login,
-  profile,
-} from "../controllers/userController";
+import { register, login, getprofile } from "../controllers/userController";
 import { body } from "express-validator";
 import { isLogin } from "../middlewares/passwordJWT";
 
-router.get("/", index);
-router.get("/bio", bio);
+router.get("/profile", [isLogin], getprofile);
 router.post(
-  "/",
+  "/register",
   [
     body("name").not().isEmpty().withMessage("Name cannot be empty"),
     body("email")
@@ -28,6 +21,7 @@ router.post(
       .withMessage("Password cannot be empty")
       .isLength({ min: 5 })
       .withMessage("Password length must be as least 5 characters"),
+    body("address").not().isEmpty().withMessage("Address cannot be empty"),
   ],
   register
 );
@@ -49,6 +43,5 @@ router.post(
   ],
   login
 );
-router.get("/me", [isLogin], profile);
 
 export default router;

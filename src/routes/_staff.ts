@@ -6,7 +6,7 @@ import {
   showstaff,
   removestaff,
   updatestaff,
-} from "../controllers/staffController";
+} from "../controllers/_staffController";
 import { body } from "express-validator";
 import { isLogin } from "../middlewares/passwordJWT";
 

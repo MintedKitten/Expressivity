@@ -6,7 +6,7 @@ import {
   insert,
   update,
   remove,
-} from "../controllers/companyController";
+} from "../controllers/_companyController";
 import { isAdmin } from "../middlewares/checkAdmin";
 import { isLogin } from "../middlewares/passwordJWT";
 

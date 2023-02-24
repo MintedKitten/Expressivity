@@ -5,22 +5,9 @@ import { JWT_SECRET } from "../config";
 import { NextFunction, Request, Response } from "express";
 import { CustomError } from "../middlewares/errorHandler";
 
-const index = (req: Request, res: Response, next: NextFunction) => {
-  return res.status(200).json({ fullname: "Korndanai" });
-};
-
-const bio = (req: Request, res: Response, next: NextFunction) => {
-  return res.status(200).json({
-    fullname: "Korndanai Ananjinda",
-    nickname: "Sky",
-    hobby: "Listening to Music",
-    gitusername: "MintedKitten",
-  });
-};
-
 const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, address } = req.body as IUser;
     // Validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -40,6 +27,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
       let userinsert = new user();
       userinsert.name = name;
       userinsert.email = email;
+      userinsert.address = address;
       userinsert.password = await userinsert.encryptPassword(password);
       await userinsert.save();
       return res.status(200).json({ message: "Register successful!" });
@@ -86,7 +74,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
         id: isUserExist._id,
       },
       JWT_SECRET,
-      { expiresIn: "5 days" }
+      { expiresIn: "7 days" }
     );
     const expired_in = decode(token) as JwtPayload;
 
@@ -100,11 +88,11 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const profile = async (req: Request, res: Response, next: NextFunction) => {
-  const { role, name, email } = req.user as IUser;
+const getprofile = async (req: Request, res: Response, next: NextFunction) => {
+  const { role, name, email, address } = req.user as IUser;
   return res
     .status(200)
-    .json({ data: { name: name, email: email, role: role } });
+    .json({ data: { name: name, email: email, role: role, address: address } });
 };
 
-export { index, bio, register, login, profile };
+export { register, login, getprofile };
