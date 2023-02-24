@@ -1,3 +1,4 @@
+console.log(getDirPath({ foldername: "test" }));
 import express from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
